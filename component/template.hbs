@@ -1,0 +1,121 @@
+<section class="horizontal-form">
+  {{#accordion-list showExpandAll=false as | al expandFn |}}
+  {{!-- This line shows the driver title which you don't have to change it --}}
+  <div class="over-hr"><span>{{driverOptionsTitle}}</span></div>
+  {{#accordion-list-item
+  title="Authentication Options"
+  detail="Configure AK/SK"
+  expandAll=expandAll
+  expand=(action expandFn)
+  expandOnInit=true
+  }}
+  <div class="row">
+    <div class="col span-6">
+      <label class="acc-label">Access Key</label>
+      {{ input classNames="form-control" placeholder="AK" value=model.outscaleConfig.accessKey}}
+    </div>
+
+    <div class="col span-6">
+      <label class="acc-label">Secret Key</label>
+      {{ input classNames="form-control" placeholder="SK" value=model.outscaleConfig.secretKey}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col span-6">
+      <label class="acc-label">Region</label>
+      <select class="form-control" onchange={{action (mut model.outscaleConfig.region) value="target.value" }}>
+        {{#each regionChoices as |choice|}}
+          <option value={{choice}} selected={{eq model.outscaleConfig.region choice}}>{{choice}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+  {{/accordion-list-item}}
+
+  {{#accordion-list-item
+  title="VM Options"
+  detail="Configuration of CPU/RAM."
+  expandAll=expandAll
+  expand=(action expandFn)
+  expandOnInit=false
+  }}
+  <div class="row">
+    <div class="col span-2 col-inline">
+          <label>CPUs</label>
+    </div>
+    <div class="col span-1">
+      {{model.outscaleConfig.cpuCount}}
+    </div>
+    <div class="col span-3">
+      {{input-slider value=model.outscaleConfig.cpuCount valueMin=cpuMin valueMax=cpuMax}}
+    </div>
+  </div>  
+  <div class="row">
+    <div class="col span-2 col-inline">
+          <label>CPU Generation</label>
+    </div>
+    <div class="col span-4 col-inline">
+      <select class="form-control" onchange={{action (mut model.outscaleConfig.cpuGen) value="target.value" }}>
+        {{#each cpuGenChoices as |choice|}}
+          <option value={{choice.id}} selected={{eq model.outscaleConfig.cpuGen choice.id}}>{{choice.label}}</option>
+        {{/each}}
+      </select>   
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-2 col-inline">
+          <label>Performance</label>
+    </div>
+    <div class="col span-4 col-inline">
+      <select class="form-control" onchange={{action (mut model.outscaleConfig.performance) value="target.value" }}>
+        {{#each performanceChoices as |choice|}}
+          <option value={{choice.id}} selected={{eq model.outscaleConfig.performance choice.id}}>{{choice.label}}</option>
+        {{/each}}
+      </select>   
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col span-2 col-inline">
+      <label>Memory Size</label>
+    </div>
+    <div class="col span-4">
+      <div class="input-group">
+        {{input-integer min=ramMin max=ramMax value=model.outscaleConfig.memorySize classNames="form-control"}}
+        <div class="input-group-addon bg-default">GB</div>
+      </div>
+    </div>
+  </div>
+
+  {{/accordion-list-item}}
+  {{!-- End of Outscale Options --}}
+
+  {{!-- This following contains the Name, Labels and Engine Options fields --}}
+  <div class="over-hr"><span>{{templateOptionsTitle}}</span></div>
+
+  {{form-name-description
+  model=model
+  nameRequired=true
+  }}
+
+  {{form-user-labels
+  initialLabels=labelResource.labels
+  setLabels=(action 'setLabels')
+  expandAll=expandAll
+  expand=(action expandFn)
+  }}
+
+  {{form-engine-opts
+  machine=model
+  showEngineUrl=showEngineUrl
+  }}
+  {{/accordion-list}}
+
+
+  {{!-- This component shows errors produced by validate() in the component --}}
+  {{top-errors errors=errors}}
+
+  {{!-- This component shows the Create and Cancel buttons --}}
+  {{save-cancel save=(action "save") editing=editing cancel=(action "cancel")}}
+</section>
