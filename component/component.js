@@ -52,7 +52,8 @@ export default Ember.Component.extend(NodeDriver, {
       cpuGen: 'v2',
       performance: '2',
       cpuCount: '1',
-      memorySize: 1
+      memorySize: 1,
+      sourceOmi: ""
     });
     set(this, 'model.%%DRIVERNAME%%Config', config);
 

@@ -34,7 +34,7 @@
 
   {{#accordion-list-item
   title="VM Options"
-  detail="Configuration of CPU/RAM."
+  detail="Configuration of the VM"
   expandAll=expandAll
   expand=(action expandFn)
   expandOnInit=false
@@ -87,6 +87,18 @@
       </div>
     </div>
   </div>
+
+    <div class="row">
+      <div class="col span-2 col-inline">
+        <label>OMI</label>
+      </div>
+      <div class="col span-4">
+      <div class="input-group">
+        {{ input classNames="form-control" placeholder="OMI" value=model.outscaleConfig.sourceOmi}}
+      </div>
+    </div>
+    
+    </div>
 
   {{/accordion-list-item}}
   {{!-- End of Outscale Options --}}
