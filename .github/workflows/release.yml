@@ -8,7 +8,7 @@ on:
     - 'v*'
 
 jobs:
-  goreleaser:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,39 +24,16 @@ jobs:
           npm install
           npm run build
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: ${{ github.ref }}
           draft: true
           prerelease: false
-      - name: Upload component.css
-        uses: actions/upload-release-asset@v1
+          files: |
+            ./dist/component.css
+            ./dist/component.js
+            ./dist/outscale.png
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./dist/component.css
-          asset_name: component.css
-          asset_content_type: text/css
-      - name: Upload component.js
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./dist/component.js
-          asset_name: component.js
-          asset_content_type: text/javascript
-      - name: Upload outscale.png
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./dist/outscale.png
-          asset_name: outscale.png
-          asset_content_type: image/png
