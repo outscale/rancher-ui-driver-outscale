@@ -4,7 +4,7 @@
   "description": "Rancher UI driver for Outscale docker-machine drivers",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/outscale-mdr/rancher-ui-driver-outscale.git"
+    "url": "git+https://github.com/outscale-dev/rancher-ui-driver-outscale.git"
   },
   "author": "Rancher Labs, Inc.",
   "license": "Apache-2.0",
@@ -16,7 +16,7 @@
     "clean": "./node_modules/.bin/gulp clean",
     "build": "./node_modules/.bin/gulp build"
   },
-  "homepage": "https://github.com/outscale-mdr/rancher-ui-driver-outscale#readme",
+  "homepage": "https://github.com/outscale-dev/rancher-ui-driver-outscale#readme",
   "devDependencies": {
     "@babel/core": "^7.2.2",
     "babel-plugin-add-module-exports": "^1.0.0",
