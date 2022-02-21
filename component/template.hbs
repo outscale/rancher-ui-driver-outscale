@@ -33,70 +33,79 @@
   {{/accordion-list-item}}
 
   {{#accordion-list-item
-  title="VM Options"
-  detail="Configuration of the VM"
+  title="Resources Options"
+  detail="Configuration of the resources"
   expandAll=expandAll
   expand=(action expandFn)
   expandOnInit=false
   }}
-  <div class="row">
-    <div class="col span-2 col-inline">
-          <label>CPUs</label>
-    </div>
-    <div class="col span-1">
-      {{model.outscaleConfig.cpuCount}}
-    </div>
-    <div class="col span-9">
-      {{input-slider value=model.outscaleConfig.cpuCount valueMin=cpuMin valueMax=cpuMax}}
-    </div>
-  </div>  
-  <div class="row">
-    <div class="col span-2 col-inline">
-          <label>CPU Generation</label>
-    </div>
-    <div class="col span-10 col-inline">
-      <select class="form-control" onchange={{action (mut model.outscaleConfig.cpuGen) value="target.value" }}>
-        {{#each cpuGenChoices as |choice|}}
-          <option value={{choice.id}} selected={{eq model.outscaleConfig.cpuGen choice.id}}>{{choice.label}}</option>
-        {{/each}}
-      </select>   
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col span-2 col-inline">
-          <label>Performance</label>
-    </div>
-    <div class="col span-10 col-inline">
-      <select class="form-control" onchange={{action (mut model.outscaleConfig.performance) value="target.value" }}>
-        {{#each performanceChoices as |choice|}}
-          <option value={{choice.id}} selected={{eq model.outscaleConfig.performance choice.id}}>{{choice.label}}</option>
-        {{/each}}
-      </select>   
-    </div>
-  </div>
+      {{#accordion-list-item
+      title="VM Options"
+      detail="Configuration of the VM"
+      expandAll=expandAll
+      expand=(action expandFn)
+      expandOnInit=true
+      }}
+        <div class="row">
+          <div class="col span-2 col-inline">
+                <label>CPUs</label>
+          </div>
+          <div class="col span-1">
+            {{model.outscaleConfig.cpuCount}}
+          </div>
+          <div class="col span-9">
+            {{input-slider value=model.outscaleConfig.cpuCount valueMin=cpuMin valueMax=cpuMax}}
+          </div>
+        </div>  
+        <div class="row">
+          <div class="col span-2 col-inline">
+                <label>CPU Generation</label>
+          </div>
+          <div class="col span-10 col-inline">
+            <select class="form-control" onchange={{action (mut model.outscaleConfig.cpuGen) value="target.value" }}>
+              {{#each cpuGenChoices as |choice|}}
+                <option value={{choice.id}} selected={{eq model.outscaleConfig.cpuGen choice.id}}>{{choice.label}}</option>
+              {{/each}}
+            </select>   
+          </div>
+        </div>
 
-  <div class="row">
-    <div class="col span-2 col-inline">
-      <label>Memory Size</label>
-    </div>
-    <div class="col span-10 col-inline">
-      <div class="input-group">
-        {{input-integer min=ramMin max=ramMax value=model.outscaleConfig.memorySize classNames="form-control"}}
-        <div class="input-group-addon bg-default">GB</div>
-      </div>
-    </div>
-  </div>
+        <div class="row">
+          <div class="col span-2 col-inline">
+                <label>Performance</label>
+          </div>
+          <div class="col span-10 col-inline">
+            <select class="form-control" onchange={{action (mut model.outscaleConfig.performance) value="target.value" }}>
+              {{#each performanceChoices as |choice|}}
+                <option value={{choice.id}} selected={{eq model.outscaleConfig.performance choice.id}}>{{choice.label}}</option>
+              {{/each}}
+            </select>   
+          </div>
+        </div>
 
-    <div class="row">
-      <div class="col span-2 col-inline">
-        <label>OMI</label>
-      </div>
-      <div class="col span-10">
-        {{ input classNames="form-control" placeholder="OMI" value=model.outscaleConfig.sourceOmi}}
-    </div>
-    
-    </div>
+        <div class="row">
+          <div class="col span-2 col-inline">
+            <label>Memory Size</label>
+          </div>
+          <div class="col span-10 col-inline">
+            <div class="input-group">
+              {{input-integer min=ramMin max=ramMax value=model.outscaleConfig.memorySize classNames="form-control"}}
+              <div class="input-group-addon bg-default">GB</div>
+            </div>
+          </div>
+        </div>
+
+          <div class="row">
+            <div class="col span-2 col-inline">
+              <label>OMI</label>
+            </div>
+            <div class="col span-10">
+              {{ input classNames="form-control" placeholder="OMI" value=model.outscaleConfig.sourceOmi}}
+          </div>
+          
+          </div>
+          {{/accordion-list-item}}
 
     {{#accordion-list-item
       title="VM Tags"
