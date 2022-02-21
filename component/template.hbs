@@ -49,7 +49,7 @@
       }}
         <div class="row">
           <div class="col span-2 col-inline">
-                <label>CPUs</label>
+                <label class="acc-label">CPUs</label>
           </div>
           <div class="col span-1">
             {{model.outscaleConfig.cpuCount}}
@@ -60,7 +60,7 @@
         </div>  
         <div class="row">
           <div class="col span-2 col-inline">
-                <label>CPU Generation</label>
+                <label class="acc-label">CPU Generation</label>
           </div>
           <div class="col span-10 col-inline">
             <select class="form-control" onchange={{action (mut model.outscaleConfig.cpuGen) value="target.value" }}>
@@ -73,7 +73,7 @@
 
         <div class="row">
           <div class="col span-2 col-inline">
-                <label>Performance</label>
+                <label class="acc-label">Performance</label>
           </div>
           <div class="col span-10 col-inline">
             <select class="form-control" onchange={{action (mut model.outscaleConfig.performance) value="target.value" }}>
@@ -86,7 +86,7 @@
 
         <div class="row">
           <div class="col span-2 col-inline">
-            <label>Memory Size</label>
+            <label class="acc-label">Memory Size</label>
           </div>
           <div class="col span-10 col-inline">
             <div class="input-group">
@@ -98,7 +98,7 @@
 
           <div class="row">
             <div class="col span-2 col-inline">
-              <label>OMI</label>
+              <label class="acc-label">OMI</label>
             </div>
             <div class="col span-10">
               {{ input classNames="form-control" placeholder="OMI" value=model.outscaleConfig.sourceOmi}}
