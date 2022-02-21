@@ -104,6 +104,20 @@ export default Ember.Component.extend(NodeDriver, {
                                     + "r" + get(this, 'config.memorySize') 
                                     + "p" + get(this, 'config.performance'));
 
+    // validate tags (cf https://docs.outscale.com/api#createtags)
+    const tagsRegex = /^.+=.{0,255}$/;
+    for (const element of get(this, 'config.extraTagsAll')) {
+      if (! tagsRegex.test(element)) {
+        errors.push('Tags must follow this syntax \'key=value\'');
+      }
+    }
+
+    for (const element of get(this, 'config.extraTagsInstances')) {
+      if (! tagsRegex.test(element)) {
+        errors.push('Tags must follow this syntax \'key=value\'');
+      }
+    }
+
     // Set the array of errors for display,
     // and return true if saving should continue.
     if ( get(errors, 'length') ) {
