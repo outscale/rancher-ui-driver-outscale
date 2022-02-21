@@ -100,6 +100,44 @@
     
     </div>
 
+    {{#accordion-list-item
+      title="VM Tags"
+      detail="Tags on all VMs"
+      expandAll=expandAll
+      expand=(action expandFn)
+      expandOnInit=false
+      }}
+        <div class="row">
+          <div class="col span-12">
+            {{form-value-array
+                  initialValues=model.outscaleConfig.extraTagsInstances
+                  addActionLabel="generic.add"
+                  changed=(action (mut model.outscaleConfig.extraTagsInstances))
+            }}
+          </div>
+        </div>
+
+      {{/accordion-list-item}}
+
+      {{#accordion-list-item
+      title="Resources Tags"
+      detail="Tags on all resources (including VM)"
+      expandAll=expandAll
+      expand=(action expandFn)
+      expandOnInit=false
+      }}
+        <div class="row">
+          <div class="col span-12">
+              {{form-value-array
+                  initialValues=model.outscaleConfig.extraTagsAll
+                  addActionLabel="generic.add"
+                  changed=(action (mut model.outscaleConfig.extraTagsAll))
+            }}
+          </div>
+        </div>
+
+      {{/accordion-list-item}}
+
   {{/accordion-list-item}}
   {{!-- End of Outscale Options --}}
 
