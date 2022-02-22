@@ -11,18 +11,18 @@
   }}
   <div class="row">
     <div class="col span-6">
-      <label class="acc-label">Access Key</label>
+      <label class="acc-label">Access Key</label>{{field-required}}
       {{ input classNames="form-control" placeholder="AK" value=model.outscaleConfig.accessKey}}
     </div>
 
     <div class="col span-6">
-      <label class="acc-label">Secret Key</label>
-      {{ input classNames="form-control" placeholder="SK" value=model.outscaleConfig.secretKey}}
+      <label class="acc-label">Secret Key</label>{{field-required}}
+      {{ input required="true" type="password" classNames="form-control" placeholder="SK" value=model.outscaleConfig.secretKey}}
     </div>
   </div>
   <div class="row">
     <div class="col span-6">
-      <label class="acc-label">Region</label>
+      <label class="acc-label">Region</label>{{field-required}}
       <select class="form-control" onchange={{action (mut model.outscaleConfig.region) value="target.value" }}>
         {{#each regionChoices as |choice|}}
           <option value={{choice}} selected={{eq model.outscaleConfig.region choice}}>{{choice}}</option>
