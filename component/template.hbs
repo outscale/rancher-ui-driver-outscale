@@ -105,6 +105,19 @@
           </div>
           
           </div>
+        
+        <div class="row">
+          <div class="col span-2 col-inline">
+              <label class="acc-label">Security Group Ids</label>
+          </div>
+          <div class="col span-10">
+            {{form-value-array
+                  initialValues=model.outscaleConfig.securityGroupIds
+                  addActionLabel="generic.add"
+                  changed=(action (mut model.outscaleConfig.securityGroupIds))
+            }}
+          </div>
+        </div>
           {{/accordion-list-item}}
 
     {{#accordion-list-item

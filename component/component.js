@@ -55,7 +55,8 @@ export default Ember.Component.extend(NodeDriver, {
       memorySize: 1,
       sourceOmi: "",
       extraTagsAll: [],
-      extraTagsInstances: []
+      extraTagsInstances: [],
+      securityGroupIds: []
     });
     set(this, 'model.%%DRIVERNAME%%Config', config);
 
