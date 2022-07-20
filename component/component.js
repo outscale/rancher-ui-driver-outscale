@@ -56,7 +56,10 @@ export default Ember.Component.extend(NodeDriver, {
       sourceOmi: "",
       extraTagsAll: [],
       extraTagsInstances: [],
-      securityGroupIds: []
+      securityGroupIds: [],
+      rootDiskType: 'gp2',
+      rootDiskSize: '15',
+      rootDiskIo1Iops: '1500',
     });
     set(this, 'model.%%DRIVERNAME%%Config', config);
 
@@ -65,6 +68,9 @@ export default Ember.Component.extend(NodeDriver, {
       cpuMax: 78,
       ramMin: 1,
       ramMax: 1039,
+      rootDiskTypeChoice: ["standard", "io1", "gp2"],
+      rootDiskIo1IopsMax: 13000,
+      rootDiskSizeMax: 14901,
       regionChoices: ["eu-west-2", "us-east-2", "us-west-1"],
       performanceChoices: [{"id": "1", "label": "Highest"},
                            {"id": "2", "label": "High"},
