@@ -105,6 +105,43 @@
           </div>
           
           </div>
+
+        <div class="row">
+            <div class="col span-2 col-inline">
+                  <label class="acc-label">Root Disk Type</label>
+            </div>
+            <div class="col span-10 col-inline">
+              <select class="form-control" onchange={{action (mut model.outscaleConfig.rootDiskType) value="target.value" }}>
+                {{#each rootDiskTypeChoice as |choice|}}
+                  <option value={{choice}} selected={{eq model.outscaleConfig.rootDiskType choice}}>{{choice}}</option>
+                {{/each}}
+              </select>   
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col span-2 col-inline">
+            <label class="acc-label">Root Disk Size</label>
+          </div>
+          <div class="col span-10 col-inline">
+            <div class="input-group">
+              {{input-integer min=1 max=rootDiskSizeMax value=model.outscaleConfig.rootDiskSize classNames="form-control"}}
+              <div class="input-group-addon bg-default">GB</div>
+            </div>
+          </div>
+        </div>
+
+
+        {{#if (eq model.outscaleConfig.rootDiskType "io1")}}
+        <div class="row">
+          <div class="col span-2 col-inline">
+            <label class="acc-label">Root Disk Iops</label>
+          </div>
+          <div class="col span-10 col-inline">
+              {{input-integer min=1 max=rootDiskIo1IopsMax value=model.outscaleConfig.rootDiskIo1Iops classNames="form-control"}}
+          </div>
+        </div>
+        {{/if}}
         
         <div class="row">
           <div class="col span-2 col-inline">
