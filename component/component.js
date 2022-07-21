@@ -59,7 +59,7 @@ export default Ember.Component.extend(NodeDriver, {
       securityGroupIds: [],
       rootDiskType: 'gp2',
       rootDiskSize: '15',
-      rootDiskIo1Iops: '1500',
+      rootDiskIops: '1500',
     });
     set(this, 'model.%%DRIVERNAME%%Config', config);
 
