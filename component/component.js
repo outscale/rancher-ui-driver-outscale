@@ -60,6 +60,7 @@ export default Ember.Component.extend(NodeDriver, {
       rootDiskType: 'gp2',
       rootDiskSize: '15',
       rootDiskIops: '1500',
+      subnetId: '',
     });
     set(this, 'model.%%DRIVERNAME%%Config', config);
 
