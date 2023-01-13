@@ -61,6 +61,7 @@ export default Ember.Component.extend(NodeDriver, {
       rootDiskSize: '15',
       rootDiskIops: '1500',
       subnetId: '',
+      kubernetesNodeNameAutotag: true,
     });
     set(this, 'model.%%DRIVERNAME%%Config', config);
 
