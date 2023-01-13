@@ -173,6 +173,15 @@
       expand=(action expandFn)
       expandOnInit=false
       }}
+
+      <div class="row">
+          <div class="col span-2 col-inline">
+            <label class="acc-label">AutoTag kubernetes NodeName</label>
+          </div>
+          <div class="col span-10 col-inline">
+              {{input type="checkbox" checked=model.outscaleConfig.kubernetesNodeNameAutotag}}
+          </div>
+      </div>
         <div class="row">
           <div class="col span-12">
             {{form-value-array
